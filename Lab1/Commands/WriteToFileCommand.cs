@@ -8,9 +8,9 @@ public class WriteToFileCommand : BaseCommand
     public override void Invoke()
     {
         IFileService filesService = new FilesService();
-        Console.WriteLine("Введіть назву файла: ");
+        Console.Write("Введіть назву файла: ");
         var name = Console.ReadLine() ?? string.Empty;
-        Console.WriteLine("Введіть текст для запису: ");
+        Console.Write("Введіть текст для запису: ");
         var text = Console.ReadLine() ?? string.Empty;
         filesService.WriteFile($"{name}.txt", text);
     }

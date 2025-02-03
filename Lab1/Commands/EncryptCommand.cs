@@ -8,12 +8,12 @@ public class EncryptCommand : BaseCommand
     public override string Title { get; set; } = "Зашифрувати";
     public override void Invoke()
     {
-        Console.WriteLine("Текст з файлу (Так, або Ні)");
+        Console.Write("Текст з файлу (Так, або Ні)");
         var choose = (Console.ReadLine() ?? string.Empty).ToLower();
         string text;
         if (choose == "так")
         {
-            Console.WriteLine("Введіть назву файлу: ");
+            Console.Write("Введіть назву файлу: ");
             var fileName = Console.ReadLine() ?? string.Empty;
             IFileService fileService = new FilesService();
             text = fileService.ReadFile($"{fileName}.txt");
