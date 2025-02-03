@@ -2,7 +2,7 @@ namespace Lab1.Crypto;
 
 public class CezarEncryptor : IEncryptor
 {
-    public string Alphabet { get; set; }
+    public string Alphabet { get; init; }
 
     public CezarEncryptor(string alphabet)
     {
@@ -13,7 +13,7 @@ public class CezarEncryptor : IEncryptor
     {
         if (key <= 0 || key > Alphabet.Length)
         {
-            throw new ArgumentException($"Ключ має бути в діапазоні 0-{Alphabet.Length}");
+            throw new ArgumentException($"Ключ має бути в діапазоні 1-{Alphabet.Length}");
         }
 
         var result = string.Empty;
