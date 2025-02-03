@@ -23,7 +23,9 @@ public class CezarEncryptor : IEncryptor
             if (index == -1) result += letter;
             else
             {
+                var isCap = letter == Alphabet[index];
                 var newLetter = Alphabet[(index + key + Alphabet.Length) % Alphabet.Length];
+                if (isCap == false) newLetter = newLetter.ToString().ToLower().First();
                 result += newLetter;
             }
         }
