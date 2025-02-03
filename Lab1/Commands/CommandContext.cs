@@ -5,6 +5,12 @@ public class CommandContext
     private int _currentNumber = 0;
     private readonly List<BaseCommand> _commands = [];
 
+    public CommandContext()
+    {
+        Console.OutputEncoding = System.Text.Encoding.Unicode;
+        Console.InputEncoding = System.Text.Encoding.Unicode;
+    }
+    
     public void Loop()
     {
         while (true)
