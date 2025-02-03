@@ -11,7 +11,8 @@ public static class Program
             new ExitCommands(),
             new WriteToFileCommand(),
             new ReadFromFileCommand(),
-            new EncryptCommand()
+            new EncryptCommand(),
+            new DecryptCommand()
             );
         context.Loop();
     }
