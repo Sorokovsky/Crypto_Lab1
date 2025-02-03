@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="bin\Debug\net8.0\$tess.txt" />
+      <Content Include="bin\Debug\net8.0\$test.txt" />
+      <Content Include="bin\Debug\net8.0\$text.txt" />
+      <Content Include="bin\Debug\net8.0\Lab1" />
+      <Content Include="bin\Debug\net8.0\Lab1.deps.json" />
+      <Content Include="bin\Debug\net8.0\Lab1.dll" />
+      <Content Include="bin\Debug\net8.0\Lab1.pdb" />
+      <Content Include="bin\Debug\net8.0\Lab1.runtimeconfig.json" />
+      <Content Include="bin\Debug\net8.0\t.txt" />
+      <Content Include="bin\Debug\net8.0\test.txt" />
+    </ItemGroup>
+
+</Project>
