@@ -9,11 +9,7 @@ public class EncryptCommand : BaseCommand
     public override void Invoke()
     {
         var text = TextSource.GetText();
-
-        Console.Write("Введіть ключ шифрування: ");
-        var key = int.Parse(Console.ReadLine() ?? string.Empty);
-        var alphabet = Locale.Choose();
-        IEncryptor encryptor = new CezarEncryptor(alphabet);
+        var (encryptor, key) = EncryptorSource.Choose();
         Console.WriteLine($"Результат: {encryptor.Encrypt(text, key)}");
     }
 }
