@@ -12,3 +12,4 @@
 /Users/andrijsorokovskij/Documents/2 cource/Crypto/Lab1/Lab1/obj/Debug/net8.0/Lab1.pdb
 /Users/andrijsorokovskij/Documents/2 cource/Crypto/Lab1/Lab1/obj/Debug/net8.0/Lab1.genruntimeconfig.cache
 /Users/andrijsorokovskij/Documents/2 cource/Crypto/Lab1/Lab1/obj/Debug/net8.0/ref/Lab1.dll
+/Users/andrijsorokovskij/Documents/2 cource/Crypto/Lab1/Lab1/obj/Debug/net8.0/Lab1.sourcelink.json

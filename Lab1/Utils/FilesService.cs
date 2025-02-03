@@ -11,7 +11,10 @@ public class FilesService : IFileService
 
         using var stream = File.OpenRead(path);
         using var reader = new StreamReader(stream);
-        return reader.ReadToEnd();
+        var data = reader.ReadToEnd();
+        reader.Close();
+        stream.Close();
+        return data;
     }
 
     public void WriteFile(string path, string data)
@@ -19,5 +22,7 @@ public class FilesService : IFileService
         var stream = File.OpenWrite(path);
         var writer = new StreamWriter(stream);
         writer.WriteLine(data);
+        writer.Close();
+        stream.Close();
     }
 }

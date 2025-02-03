@@ -1,4 +1,5 @@
-﻿using Lab1.Utils;
+﻿using Lab1.Crypto;
+using Lab1.Utils;
 
 namespace Lab1;
 
@@ -45,6 +46,17 @@ public static class Program
                         var text = files.ReadFile($"{path}.txt");
                         Console.WriteLine($"Вміст файлу {path}");
                         Console.WriteLine(text);
+                        break;
+                    }
+                    case 4:
+                    {
+                        Console.WriteLine("Введіть текст: ");
+                        var text = Console.ReadLine() ?? string.Empty;
+                        Console.WriteLine("Введіть ключ: ");
+                        var key = int.Parse(Console.ReadLine() ?? string.Empty);
+                        var encryptor = new CezarEncryptor(Alphabets.EN);
+                        var encrypted = encryptor.Encrypt(text, key);
+                        Console.WriteLine($"Зашифровано: {encrypted}");
                         break;
                     }
                 }
