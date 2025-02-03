@@ -9,9 +9,15 @@ public class CezarEncryptor : IEncryptor
         Alphabet = alphabet;
     }
 
-    public string Encrypt(string input, int key)
+    public string Encrypt(string input, object key)
     {
-        if (key <= 0 || key > Alphabet.Length)
+        if (key.GetType() != typeof(int))
+        {
+            throw new ArgumentException("Ключ має бути числом.");
+        }
+
+        var step = (int)key;
+        if (step <= 0 || step > Alphabet.Length)
         {
             throw new ArgumentException($"Ключ має бути в діапазоні 1-{Alphabet.Length}");
         }
@@ -24,7 +30,7 @@ public class CezarEncryptor : IEncryptor
             else
             {
                 var isCap = letter == Alphabet[index];
-                var newLetter = Alphabet[(index + key + Alphabet.Length) % Alphabet.Length];
+                var newLetter = Alphabet[(index + step + Alphabet.Length) % Alphabet.Length];
                 if (isCap == false) newLetter = newLetter.ToString().ToLower().First();
                 result += newLetter;
             }
@@ -33,13 +39,18 @@ public class CezarEncryptor : IEncryptor
         return result;
     }
 
-    public string Decrypt(string input, int key)
+    public string Decrypt(string input, object key)
     {
-        if (key <= 0 || key > Alphabet.Length)
+        if (key.GetType() != typeof(int))
+        {
+            throw new ArgumentException("Ключ має бути числом.");
+        }
+
+        var step = (int)key;
+        if (step <= 0 || step > Alphabet.Length)
         {
             throw new ArgumentException($"Ключ має бути в діапазоні 1-{Alphabet.Length}");
         }
-
         var result = string.Empty;
         foreach (var letter in input)
         {
@@ -48,7 +59,7 @@ public class CezarEncryptor : IEncryptor
             else
             {
                 var isCap = letter == Alphabet[index];
-                var newLetter = Alphabet[(index - key + Alphabet.Length) % Alphabet.Length];
+                var newLetter = Alphabet[(index - step + Alphabet.Length) % Alphabet.Length];
                 if (isCap == false) newLetter = newLetter.ToString().ToLower().First();
                 result += newLetter;
             }
