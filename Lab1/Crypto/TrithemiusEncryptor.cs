@@ -17,7 +17,9 @@ public class TrithemiusEncryptor : IEncryptor
     {
         if (numbers.Length == 2)
         {
-            return numbers.First() * currentIndex + numbers.ElementAt(1);
+            var a = numbers.First();
+            var b = numbers.ElementAt(1);
+            return a * currentIndex + b;
         }
 
         if (numbers.Length == 3)
@@ -44,8 +46,10 @@ public class TrithemiusEncryptor : IEncryptor
                 {
                     var capLetter = Alphabet.ElementAt(index);
                     var isCap = capLetter == letter;
-                    var step = CalculateStep(numbers, index) * (reverse ? -1 : 1);
-                    var newLetter = Alphabet[(index + step + Alphabet.Length) % Alphabet.Length];
+                    var step = CalculateStep(numbers, index);
+                    if (reverse) step = -step;
+                    var newIndex = (index + step + Alphabet.Length) % Alphabet.Length;
+                    var newLetter = Alphabet[newIndex];
                     if (isCap == false) newLetter = newLetter.ToString().ToLower().First();
                     result += newLetter;
                 }
@@ -77,7 +81,8 @@ public class TrithemiusEncryptor : IEncryptor
 
                     var mottoIndex = Alphabet.IndexOf(motto[i]);
                     var step = mottoIndex * (reverse ? -1 : 1);
-                    var newLetter = Alphabet[(index + step + Alphabet.Length) % Alphabet.Length];
+                    var newIndex = (index + step + Alphabet.Length) % Alphabet.Length;
+                    var newLetter = Alphabet[newIndex];
                     if (isCap == false) newLetter = newLetter.ToString().ToLower().First();
                     result += newLetter;
                     i++;

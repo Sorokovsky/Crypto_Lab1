@@ -20,4 +20,8 @@
       <Content Include="bin\Debug\net8.0\test.txt" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="bin\Debug\" />
+    </ItemGroup>
+
 </Project>

@@ -92,7 +92,7 @@ public static class EncryptorSource
             if(i == 0) Console.Write("Введіть A: ");
             if(i == 1) Console.Write("Введіть B: ");
             if(i == 2) Console.Write("Введіть C: ");
-            result.Append(int.Parse(Console.ReadLine() ?? string.Empty));
+            result[i] = (int.Parse(Console.ReadLine() ?? string.Empty));
         }
 
         return result;
