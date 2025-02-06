@@ -7,13 +7,46 @@ namespace Lab1.Tests;
 public class CesarTests
 {
     [TestMethod]
-    public void ShouldBeCorrectEn()
+    public void ShouldBeCorrectEncryptEn()
     {
         var source = "test";
         var expected = "whvw";
         var key = 3;
         IEncryptor encryptor = new CezarEncryptor(Alphabets.En);
         var output = encryptor.Encrypt(source, key);
+        Assert.AreEqual(expected, output);
+    }
+    
+    [TestMethod]
+    public void ShouldBeCorrectDecryptEn()
+    {
+        var source = "whvw";
+        var expected = "test";
+        var key = 3;
+        IEncryptor encryptor = new CezarEncryptor(Alphabets.En);
+        var output = encryptor.Decrypt(source, key);
+        Assert.AreEqual(expected, output);
+    }
+    
+    [TestMethod]
+    public void ShouldBeCorrectEncryptUk()
+    {
+        var source = "Сороковський Андрій Іванович 2022";
+        var expected = "Фсуснсдфанйм Гржукм Кдгрсдйь 2022";
+        var key = 3;
+        IEncryptor encryptor = new CezarEncryptor(Alphabets.Ukr);
+        var output = encryptor.Encrypt(source, key);
+        Assert.AreEqual(expected, output);
+    }
+    
+    [TestMethod]
+    public void ShouldBeCorrectDecryptUk()
+    {
+        var source = "Фсуснсдфанйм Гржукм Кдгрсдйь 2022";
+        var expected = "Сороковський Андрій Іванович 2022";
+        var key = 3;
+        IEncryptor encryptor = new CezarEncryptor(Alphabets.Ukr);
+        var output = encryptor.Decrypt(source, key);
         Assert.AreEqual(expected, output);
     }
 
