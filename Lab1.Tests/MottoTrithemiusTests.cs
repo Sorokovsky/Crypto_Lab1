@@ -27,4 +27,26 @@ public class MottoTrithemiusTests
         var result = encryptor.Decrypt(source, key);
         Assert.AreEqual(expected, result);
     }
+    
+    [TestMethod]
+    public void ShouldBeCorrectEncryptUkr()
+    {
+        var source = "Сороковський";
+        var key = "Андрій";
+        var expected = "Свхдхювдвбсц";
+        var encryptor = new MottorTrithemiusEncryptor(Alphabets.Ukr);
+        var result = encryptor.Encrypt(source, key);
+        Assert.AreEqual(expected, result);
+    }
+    
+    [TestMethod]
+    public void ShouldBeCorrectDecryptUkr()
+    {
+        var source = "Свхдхювдвбсц";
+        var key = "Андрій";
+        var expected = "Сороковський";
+        var encryptor = new MottorTrithemiusEncryptor(Alphabets.Ukr);
+        var result = encryptor.Decrypt(source, key);
+        Assert.AreEqual(expected, result);
+    }
 }
