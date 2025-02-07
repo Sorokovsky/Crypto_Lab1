@@ -50,7 +50,7 @@ public class MottorTrithemiusEncryptor : IEncryptor<string>
             {
                 var isCap = char.IsUpper(letter);
                 var mottoLetter = mottor[i];
-                var mottoIndex = Alphabet.IndexOf(mottoLetter);
+                var mottoIndex = Alphabet.IndexOf(char.ToUpper(mottoLetter));
                 if (mottoIndex == -1) result += letter;
                 else
                 {
