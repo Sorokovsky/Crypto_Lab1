@@ -9,6 +9,10 @@ public static class EncryptorSource
         var alphabet = Locale.Choose();
         Console.WriteLine("Виберіть метод шифрування.");
         Console.WriteLine("1-Шифр Цезаря.");
+        Console.WriteLine("2-Лінійний шифр Тритеміуса.");
+        Console.WriteLine("3-Лінійний шифр Тритеміуса.");
+        Console.WriteLine("4-Нелінійний шифр Тритеміуса.");
+        Console.WriteLine("5-Шифр Тритеміуса за гаслом.");
         Console.Write(">> ");
         int variant = int.Parse(Console.ReadLine() ?? string.Empty);
         switch (variant)
