@@ -11,11 +11,13 @@
       <Content Include="bin\Debug\net8.0\$tess.txt" />
       <Content Include="bin\Debug\net8.0\$test.txt" />
       <Content Include="bin\Debug\net8.0\$text.txt" />
+      <Content Include="bin\Debug\net8.0\input.txt" />
       <Content Include="bin\Debug\net8.0\Lab1" />
       <Content Include="bin\Debug\net8.0\Lab1.deps.json" />
       <Content Include="bin\Debug\net8.0\Lab1.dll" />
       <Content Include="bin\Debug\net8.0\Lab1.pdb" />
       <Content Include="bin\Debug\net8.0\Lab1.runtimeconfig.json" />
+      <Content Include="bin\Debug\net8.0\output.txt" />
       <Content Include="bin\Debug\net8.0\t.txt" />
       <Content Include="bin\Debug\net8.0\test.txt" />
     </ItemGroup>

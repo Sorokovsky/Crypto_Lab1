@@ -34,7 +34,9 @@ public class FilesService : IFileService
                 throw new Exception("Відповідь не розпізнано.");
             }
         }
-        using var stream = File.Open(filePath, FileMode.Truncate);
+
+        var mode = File.Exists(filePath) ? FileMode.Truncate : FileMode.Create;
+        using var stream = File.Open(filePath, mode);
         using var writer = new StreamWriter(stream);
         writer.Write(data);
     }

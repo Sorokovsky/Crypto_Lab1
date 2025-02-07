@@ -9,6 +9,6 @@ public class EncryptCommand : BaseCommand
     {
         var text = TextSource.GetText();
         var (encryptor, key) = EncryptorSource.Choose();
-        Console.WriteLine($"Результат: {encryptor.Encrypt(text, key)}");
+        TextSource.OutputText(encryptor.Encrypt(text, key));
     }
 }
