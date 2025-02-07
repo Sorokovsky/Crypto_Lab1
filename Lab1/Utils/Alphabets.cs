@@ -17,7 +17,7 @@ public static class Alphabets
             .GetProperties(BindingFlags.Static | BindingFlags.Public | BindingFlags.FlattenHierarchy);
         var result = properties 
             .Where(x => x.PropertyType == typeof(string))
-            .ToDictionary(x => x.Name, x => (string)x.GetValue(null) ?? string.Empty);
+            .ToDictionary(x => x.Name, x => (string)x.GetValue(null)!);
         return result;
     }
 }

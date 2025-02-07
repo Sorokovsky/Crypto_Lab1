@@ -1,75 +1,63 @@
-namespace Lab1.Crypto;
-
-public class LinearTrithemiusEncryptor : IEncryptor<List<int>>
+namespace Lab1.Crypto
 {
-    public string Alphabet { get; init; }
+    public class LinearTrithemiusEncryptor : IEncryptor<List<int>>
+    {
+        public string Alphabet { get; init; }
 
-    public LinearTrithemiusEncryptor(string alphabet)
-    {
-        Alphabet = alphabet;
-    }
-    
-    public string Encrypt(string input, List<int> key)
-    {
-        var (a, b) = GetAndValidateKey(key);
-        var result = string.Empty;
-        foreach (var letter in input)
+        public LinearTrithemiusEncryptor(string alphabet)
         {
-            var index = Alphabet.IndexOf(letter.ToString().ToUpper().First());
-            if (index == -1) result += letter;
-            else
+            Alphabet = alphabet;
+        }
+
+        public string Encrypt(string input, List<int> key)
+        {
+            var (a, b) = GetAndValidateKey(key);
+            var result = string.Empty;
+
+            for(var i = 0; i < input.Length; i++)
             {
-                var capLetter = Alphabet[index];
-                var isCap = capLetter == letter;
-                var step = a * index + b;
-                var newIndex = (index + step + Alphabet.Length) % Alphabet.Length;
-                var newLetter = Alphabet[newIndex];
-                if (isCap == false) newLetter = newLetter.ToString().ToLower().First();
-                result += newLetter;
+                var letter = input[i];
+                var index = Alphabet.IndexOf(char.ToUpper(letter));
+                if (index == -1) result += letter;
+                else
+                {
+                    var isCap = char.IsUpper(letter);
+                    var step = a * i + b;
+                    var newIndex = (index + step) % Alphabet.Length;
+                    var newLetter = Alphabet[(newIndex) % Alphabet.Length];
+                    result += isCap ? newLetter : char.ToLower(newLetter);
+                }
             }
+
+            return result;
         }
 
-        return result;
-    }
-
-    public string Decrypt(string input, List<int> key)
-    {
-        var (a, b) = GetAndValidateKey(key);
-        var result = string.Empty;
-        var reversedA = Reverse(a, Alphabet.Length);
-        foreach (var letter in input)
+        public string Decrypt(string input, List<int> key)
         {
-            var index = Alphabet.IndexOf(letter.ToString().ToUpper().First());
-            if (index == -1) result += letter;
-            else
+            var (a, b) = GetAndValidateKey(key);
+            var result = string.Empty;
+
+            for(var i = 0; i < input.Length; i++)
             {
-                var capLetter = Alphabet[index];
-                var isCap = capLetter == letter;
-                var newIndex = (reversedA * (index - b)) % Alphabet.Length; 
-                var newLetter = Alphabet[newIndex];
-                if (isCap == false) newLetter = newLetter.ToString().ToLower().First();
-                result += newLetter;
+                var letter = input[i];
+                var index = Alphabet.IndexOf(char.ToUpper(letter));
+                if (index == -1) result += letter;
+                else
+                {
+                    var isCap = char.IsUpper(letter);
+                    var step = a * i + b;
+                    var newIndex = (index - step + Alphabet.Length) % Alphabet.Length;
+                    var newLetter = Alphabet[newIndex];
+                    result += isCap ? newLetter : char.ToLower(newLetter);
+                }
             }
+
+            return result;
         }
-
-        return result;
-    }
-
-    private static (int a, int b) GetAndValidateKey(List<int> key)
-    {
-        if (key.Count != 2) throw new ArgumentException("Ключ має мати дві константи.");
-        return (key.First(), key[1]);
-    }
-
-    private static int Reverse(int number, int mod)
-    {
-        var i = 0;
-        var result = 0;
-        while (result != 1)
+        private static (int a, int b) GetAndValidateKey(List<int> key)
         {
-            i++;
-            result = (number * i) % mod;
+            if (key.Count != 2) throw new ArgumentException("Ключ має містити два параметри (a, b).");
+            return (key.First(), key[1]);
         }
-        return i;
     }
 }
