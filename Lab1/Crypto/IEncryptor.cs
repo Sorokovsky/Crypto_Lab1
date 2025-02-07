@@ -1,6 +1,6 @@
 namespace Lab1.Crypto;
 
-public interface IEncryptor<TKey>
+public interface IEncryptor<in TKey>
 {
     public string Alphabet { get; init; }
     
