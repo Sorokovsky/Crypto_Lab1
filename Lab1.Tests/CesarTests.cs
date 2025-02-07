@@ -12,7 +12,7 @@ public class CesarTests
         var source = "test";
         var expected = "whvw";
         var key = 3;
-        IEncryptor encryptor = new CezarEncryptor(Alphabets.En);
+        IEncryptor<int> encryptor = new CezarEncryptor(Alphabets.En);
         var output = encryptor.Encrypt(source, key);
         Assert.AreEqual(expected, output);
     }
@@ -23,7 +23,7 @@ public class CesarTests
         var source = "whvw";
         var expected = "test";
         var key = 3;
-        IEncryptor encryptor = new CezarEncryptor(Alphabets.En);
+        IEncryptor<int> encryptor = new CezarEncryptor(Alphabets.En);
         var output = encryptor.Decrypt(source, key);
         Assert.AreEqual(expected, output);
     }
@@ -34,7 +34,7 @@ public class CesarTests
         var source = "Сороковський Андрій Іванович 2022";
         var expected = "Фсуснсдфанйм Гржукм Кдгрсдйь 2022";
         var key = 3;
-        IEncryptor encryptor = new CezarEncryptor(Alphabets.Ukr);
+        IEncryptor<int> encryptor = new CezarEncryptor(Alphabets.Ukr);
         var output = encryptor.Encrypt(source, key);
         Assert.AreEqual(expected, output);
     }
@@ -45,7 +45,7 @@ public class CesarTests
         var source = "Фсуснсдфанйм Гржукм Кдгрсдйь 2022";
         var expected = "Сороковський Андрій Іванович 2022";
         var key = 3;
-        IEncryptor encryptor = new CezarEncryptor(Alphabets.Ukr);
+        IEncryptor<int> encryptor = new CezarEncryptor(Alphabets.Ukr);
         var output = encryptor.Decrypt(source, key);
         Assert.AreEqual(expected, output);
     }
@@ -55,7 +55,7 @@ public class CesarTests
     {
         var source = "test";
         var key = Alphabets.En.Length + 1;
-        IEncryptor encryptor = new CezarEncryptor(Alphabets.En);
+        IEncryptor<int> encryptor = new CezarEncryptor(Alphabets.En);
         Assert.ThrowsException<ArgumentException>(() => encryptor.Encrypt(source, key));
     }
 
@@ -64,16 +64,7 @@ public class CesarTests
     {
         var source = "test";
         var key = 0;
-        IEncryptor encryptor = new CezarEncryptor(Alphabets.En);
-        Assert.ThrowsException<ArgumentException>(() => encryptor.Encrypt(source, key));
-    }
-    
-    [TestMethod] 
-    public void ShouldBeExceptionIncorrectType()
-    {
-        var source = "test";
-        var key = "tests";
-        IEncryptor encryptor = new CezarEncryptor(Alphabets.En);
+        IEncryptor<int> encryptor = new CezarEncryptor(Alphabets.En);
         Assert.ThrowsException<ArgumentException>(() => encryptor.Encrypt(source, key));
     }
 }

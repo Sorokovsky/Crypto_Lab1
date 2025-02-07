@@ -1,6 +1,6 @@
 namespace Lab1.Crypto;
 
-public class CezarEncryptor : IEncryptor
+public class CezarEncryptor : IEncryptor<int>
 {
     public string Alphabet { get; init; }
 
@@ -9,21 +9,17 @@ public class CezarEncryptor : IEncryptor
         Alphabet = alphabet;
     }
 
-    public string Encrypt(string input, object key) => GetNewText(input, GetAndValidateKey(key));
+    public string Encrypt(string input, int key) => GetNewText(input, GetAndValidateKey(key));
 
-    public string Decrypt(string input, object key) => GetNewText(input, -GetAndValidateKey(key));
+    public string Decrypt(string input, int key) => GetNewText(input, -GetAndValidateKey(key));
 
-    private int GetAndValidateKey(object key)
+    private int GetAndValidateKey(int key)
     {
-        if (key is int numberKey)
-        {
-            if (numberKey <= 0 || numberKey > Alphabet.Length)
+            if (key <= 0 || key > Alphabet.Length)
             {
                 throw new ArgumentException($"Ключ має бути в діапазоні 1-{Alphabet.Length}");
             }
-            return numberKey;
-        }
-        throw new ArgumentException("Ключ має бути числом.");
+            return key;
     }
 
     private string GetNewText(string input, int step)
