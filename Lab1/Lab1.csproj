@@ -20,6 +20,7 @@
       <Content Include="bin\Debug\net8.0\output.txt" />
       <Content Include="bin\Debug\net8.0\t.txt" />
       <Content Include="bin\Debug\net8.0\test.txt" />
+      <Content Include="bin\Debug\net8.0\text.txt" />
     </ItemGroup>
 
     <ItemGroup>

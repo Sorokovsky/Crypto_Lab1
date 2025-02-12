@@ -12,7 +12,8 @@ public static class Program
             new WriteToFileCommand(),
             new ReadFromFileCommand(),
             new EncryptCommand(),
-            new DecryptCommand()
+            new DecryptCommand(),
+            new HackTextCommand()
             );
         context.Loop();
     }
