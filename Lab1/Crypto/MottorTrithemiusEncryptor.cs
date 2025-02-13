@@ -8,62 +8,10 @@ public class MottorTrithemiusEncryptor : IEncryptor<string>
     }
 
     public string Alphabet { get; init; }
-    
-    public string Encrypt(string input, string key)
-    {
-        var mottor = ValidateAndGetKey(key, input.Length);
-        var result = string.Empty;
-        for (int i = 0; i < input.Length; i++)
-        {
-            var letter = input[i];
-            var index = Alphabet.IndexOf(char.ToUpper(letter));
-            if (index == -1) result += letter;
-            else
-            {
-                var isCap = char.IsUpper(letter);
-                var mottoLetter = mottor[i];
-                var mottoIndex = Alphabet.IndexOf(char.ToUpper(mottoLetter));
-                if (mottoIndex == -1) result += letter;
-                else
-                {
-                    var newIndex = (index + mottoIndex) % Alphabet.Length;
-                    var newLetter = Alphabet[newIndex];
-                    newLetter = isCap ? newLetter : char.ToLower(newLetter);
-                    result += newLetter;
-                }
-            }
-        }
 
-        return result;
-    }
+    public string Encrypt(string input, string key) => GetNewString(input, key, false);
 
-    public string Decrypt(string input, string key)
-    {
-        var mottor = ValidateAndGetKey(key, input.Length);
-        var result = string.Empty;
-        for (int i = 0; i < input.Length; i++)
-        {
-            var letter = input[i];
-            var index = Alphabet.IndexOf(char.ToUpper(letter));
-            if (index == -1) result += letter;
-            else
-            {
-                var isCap = char.IsUpper(letter);
-                var mottoLetter = mottor[i];
-                var mottoIndex = Alphabet.IndexOf(char.ToUpper(mottoLetter));
-                if (mottoIndex == -1) result += letter;
-                else
-                {
-                    var newIndex = (index - mottoIndex + Alphabet.Length) % Alphabet.Length;
-                    var newLetter = Alphabet[newIndex];
-                    newLetter = isCap ? newLetter : char.ToLower(newLetter);
-                    result += newLetter;
-                }
-            }
-        }
-
-        return result;
-    }
+    public string Decrypt(string input, string key) => GetNewString(input, key, true);
 
     private string ValidateAndGetKey(string key, int needCount)
     {
@@ -96,5 +44,34 @@ public class MottorTrithemiusEncryptor : IEncryptor<string>
         }
 
         return alphabetKey;
+    }
+
+    private string GetNewString(string input, string key, bool reversed)
+    {
+        var mottor = ValidateAndGetKey(key, input.Length);
+        var result = string.Empty;
+        for (int i = 0; i < input.Length; i++)
+        {
+            var letter = input[i];
+            var index = Alphabet.IndexOf(char.ToUpper(letter));
+            if (index == -1) result += letter;
+            else
+            {
+                var isCap = char.IsUpper(letter);
+                var mottoLetter = mottor[i];
+                var mottoIndex = Alphabet.IndexOf(char.ToUpper(mottoLetter));
+                if (mottoIndex == -1) result += letter;
+                else
+                {
+                    if (reversed) mottoIndex = -mottoIndex;
+                    var newIndex = (index + mottoIndex + Alphabet.Length) % Alphabet.Length;
+                    var newLetter = Alphabet[newIndex];
+                    newLetter = isCap ? newLetter : char.ToLower(newLetter);
+                    result += newLetter;
+                }
+            }
+        }
+
+        return result;
     }
 }
