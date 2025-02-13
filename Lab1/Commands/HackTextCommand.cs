@@ -11,11 +11,7 @@ public class HackTextCommand : BaseCommand
         var text = TextSource.GetText();
         var locale = Locale.Choose();
         IEncryptor<int> encryptor = new CezarEncryptor(locale);
-        for (var i = 1; i <= locale.Length; i++)
-        {
-            var result = encryptor.Decrypt(text, i);
-            Console.WriteLine($"З ключем: {i}");
-            Console.WriteLine($"Результат: {result}");
-        }
+        var statistics = new Statistics();
+        statistics.Make(text);
     }
 }
