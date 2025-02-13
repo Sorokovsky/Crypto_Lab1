@@ -15,7 +15,7 @@ public class HackTextCommand : BaseCommand
         statistics.Make(text);
         var a = Alphabets.All.First(x => x.Value.Equals(locale)).Key;
         var popular = statistics.Popular();
-        var pop = Frequencies.All[a].First().Key;
+        var pop = Frequencies.All[a].Last().Key;
         var freqIndex = locale.IndexOf(pop);
         var popIndex = locale.IndexOf(popular);
         var key = Math.Abs(freqIndex - popIndex);
