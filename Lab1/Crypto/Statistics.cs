@@ -21,6 +21,6 @@ public class Statistics
 
     public char Popular(int position = 0)
     {
-        PopularLetters.
+        return PopularLetters.Skip(position).First().Key;
     }
 }

@@ -7,8 +7,8 @@ public class CommandContext
 
     public CommandContext()
     {
-        Console.OutputEncoding = System.Text.Encoding.Unicode;
-        Console.InputEncoding = System.Text.Encoding.Unicode;
+        //Console.OutputEncoding = System.Text.Encoding.Unicode;
+        //Console.InputEncoding = System.Text.Encoding.Unicode;
     }
     
     public void Loop()
